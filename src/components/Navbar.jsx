@@ -9,12 +9,17 @@ export default function Navbar() {
     <nav className="bg-white shadow p-4">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         {/* Logo */}
-        <Link to="/" className="text-xl font-bold text-blue-600">
+        <span className="text-xl font-bold text-blue-600 cursor-default">
           GameZone
-        </Link>
+        </span>
 
         {/* Desktop Links */}
+
+
         <div className="hidden md:flex items-center space-x-6">
+          <Link to="/" className="text-gray-700 hover:text-blue-600">
+            Home
+          </Link>
           <Link to="/games" className="text-gray-700 hover:text-blue-600">
             Games
           </Link>
@@ -45,8 +50,13 @@ export default function Navbar() {
       </div>
 
       {/* Mobile Menu */}
+
       {menuOpen && (
         <div className="md:hidden mt-4 space-y-3 px-4">
+
+          <Link to="/" className="block text-gray-700 hover:text-blue-600">
+            Home
+          </Link>
           <Link to="/games" className="block text-gray-700 hover:text-blue-600">
             Games
           </Link>
