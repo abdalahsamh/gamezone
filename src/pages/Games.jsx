@@ -6,12 +6,32 @@ export default function Games() {
   const games = [
     { id: 1, title: "Call of Duty", image: "/images/cod.jpg", price: "$59.99" },
     { id: 2, title: "FIFA", image: "/images/fifa.jpg", price: "$49.99" },
-    { id: 3, title: "God of War", image: "/images/god of war.jpg", price: "$39.99" },
+    {
+      id: 3,
+      title: "God of War",
+      image: "/images/god of war.jpg",
+      price: "$39.99",
+    },
     { id: 4, title: "GTA", image: "/images/gta.jpg", price: "$29.99" },
-    { id: 5, title: "Mortal Kombat", image: "/images/mortal combat.jpg", price: "$19.99" },
+    {
+      id: 5,
+      title: "Mortal Kombat",
+      image: "/images/mortal combat.jpg",
+      price: "$19.99",
+    },
     { id: 6, title: "PES", image: "/images/pes.jpg", price: "$24.99" },
-    { id: 7, title: "Red Dead Redemption", image: "/images/red dead.jpg", price: "$44.99" },
-    { id: 8, title: "Spider-Man", image: "/images/spider-man.jpg", price: "$34.99" },
+    {
+      id: 7,
+      title: "Red Dead Redemption",
+      image: "/images/red dead.jpg",
+      price: "$44.99",
+    },
+    {
+      id: 8,
+      title: "Spider-Man",
+      image: "/images/spider-man.jpg",
+      price: "$34.99",
+    },
   ];
 
   const handleAddToCart = (title) => {
