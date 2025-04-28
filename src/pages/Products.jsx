@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FaFire, FaTag, FaRocket } from "react-icons/fa";
 import "animate.css";
+import Swal from "sweetalert2";
 
 const productsData = [
   {
@@ -15,7 +16,7 @@ const productsData = [
   {
     id: 2,
     name: "Xbox Series X",
-    price: 500,
+    price: 2500,
     category: "Xbox",
     description: "Power your dreams.",
     image: "/images/x box.jpg",
@@ -24,7 +25,7 @@ const productsData = [
   {
     id: 3,
     name: "PlayStation 5",
-    price: 550,
+    price: 5550,
     category: "PS",
     description: "Play has no limits.",
     image: "/images/ps5.jpg",
@@ -33,7 +34,7 @@ const productsData = [
   {
     id: 4,
     name: "PC Screen",
-    price: 120,
+    price: 320,
     category: "PC",
     description: "Crisp and vibrant visuals.",
     image: "/images/Pc screen.jpg",
@@ -42,7 +43,7 @@ const productsData = [
   {
     id: 5,
     name: "PC Gaming Screen",
-    price: 150,
+    price: 750,
     category: "PC",
     description: "Ultimate gaming experience.",
     image: "/images/gaming pc screen.jpg",
@@ -51,7 +52,7 @@ const productsData = [
   {
     id: 6,
     name: "PlayStation 4",
-    price: 440,
+    price: 1440,
     category: "PS",
     description: "Classic gaming experience.",
     image: "/images/playstation 4.jpg",
@@ -59,12 +60,48 @@ const productsData = [
   },
   {
     id: 7,
+    name: "PlayStation 4 joystick",
+    price: 140,
+    category: "PS",
+    description: "Gaming become easy.",
+    image: "/images/joystick ps4.jpg",
+    badge: "Sale",
+  },
+  {
+    id: 8,
     name: "Laptop Gaming",
-    price: 1300,
-    category: "Accessories",
+    price: 2300,
+    category: "laptop",
     description: "Powerful portable gaming.",
     image: "/images/laptop.jpg",
     badge: "Limited",
+  },
+  {
+    id: 9,
+    name: "PlayStation 5 joystick",
+    price: 300,
+    category: "PS",
+    description: "Buy and play now.",
+    image: "/images/joystick ps5.jpg",
+    badge: "Limited",
+  },
+  {
+    id: 10,
+    name: "macbook pro",
+    price: 4000,
+    category: "laptop",
+    description: "Modern and powerful.",
+    image: "/images/macbok.jpg",
+    badge: "Limited",
+  },
+  {
+    id: 11,
+    name: "Xbox Series X joystick",
+    price: 380,
+    category: "Xbox",
+    description: "Strong and modern.",
+    image: "/images/xbox joystick.jpg",
+    badge: "Sale",
   },
 ];
 
@@ -86,6 +123,16 @@ export default function Products() {
       if (sortOption === "newest") return b.id - a.id;
       return 0;
     });
+
+  const handleAddToCart = (productName) => {
+    Swal.fire({
+      title: `${productName}`,
+      text: "Added to cart successfully!",
+      icon: "success",
+      timer: 1000,
+      showConfirmButton: false,
+    });
+  };
 
   return (
     <div className="p-6 min-h-screen bg-gradient-to-b from-gray-100 to-gray-300">
@@ -110,6 +157,7 @@ export default function Products() {
           <option value="PC">PC</option>
           <option value="Xbox">Xbox</option>
           <option value="PS">PS</option>
+          <option value="laptop">Laptop</option>
         </select>
 
         {/* Sort */}
@@ -146,16 +194,21 @@ export default function Products() {
             <img
               src={product.image}
               alt={product.name}
-              className="w-full h-79  object-cover rounded-xl mb-4 transition-transform duration-300 hover:scale-105"
+              className="w-full h-60 bg-cover rounded-xl mb-4 transition-transform duration-300"
             />
 
             {/* Product Info */}
             <h2 className="text-xl font-bold mb-2">{product.name}</h2>
             <p className="text-gray-500 text-sm mb-2">{product.description}</p>
-            <p className="text-blue-600 font-bold text-lg mb-4">${product.price}</p>
+            <p className="text-blue-600 font-bold text-lg mb-4">
+              ${product.price}
+            </p>
 
             {/* Add to Cart Button */}
-            <button className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white px-5 py-2 rounded-full hover:scale-90 transition-transform">
+            <button
+              onClick={() => handleAddToCart(product.name)}
+              className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white px-5 py-2 rounded-full hover:scale-90 transition-transform"
+            >
               Add to Cart
             </button>
           </div>

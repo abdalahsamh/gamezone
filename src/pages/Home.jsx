@@ -7,7 +7,7 @@ export default function Home() {
     <div>
       {/* Hero Section */}
       <div
-        className="h-[80vh] bg-cover bg-center flex flex-col justify-center items-center text-white text-center"
+        className="h-[100vh] bg-cover bg-center flex flex-col justify-center items-center text-white text-center"
         style={{ backgroundImage: "url('/images/hero.jpg')" }}
       >
         <h1 className="text-4xl md:text-6xl font-bold animate__animated animate__fadeInDown">

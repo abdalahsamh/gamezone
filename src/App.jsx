@@ -7,6 +7,8 @@ import Accessories from "./pages/Accessories";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Games from "./pages/Games";
+import Cart from "./pages/Cart";
+import Error from "./pages/Error";
 
 export default function App() {
   return (
@@ -17,7 +19,9 @@ export default function App() {
         <Route path="/games" element={<Games />} />
         <Route path="/products" element={<Products />} />
         <Route path="/accessories" element={<Accessories />} />
+        <Route path="/cart" element={<Cart />} />
         <Route path="/auth" element={<Login />} />
+        <Route path="*" element={<Error />} />
       </Routes>
       <Footer />
     </>

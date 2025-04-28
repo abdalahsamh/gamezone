@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { HiMenu, HiX } from "react-icons/hi";
+import { IoPersonCircle } from "react-icons/io5";
+import { FaShoppingCart } from "react-icons/fa";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -14,8 +16,6 @@ export default function Navbar() {
         </span>
 
         {/* Desktop Links */}
-
-
         <div className="hidden md:flex items-center space-x-6">
           <Link to="/" className="text-gray-700 hover:text-blue-600">
             Home
@@ -31,13 +31,26 @@ export default function Navbar() {
           </Link>
         </div>
 
-        {/* Auth Buttons */}
-        <div className="hidden md:flex space-x-2">
-          <Link
-            to="/auth"
-            className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
-          >
-            Login
+        {/* Auth & Cart Buttons */}
+        <div className="hidden md:flex items-center space-x-4">
+          {/* Cart Icon */}
+          <Link to="/cart" className="relative">
+            <FaShoppingCart
+              size={24}
+              className="text-gray-700 hover:text-blue-600"
+            />
+            {/* Badge for cart count */}
+            <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
+              0
+            </span>
+          </Link>
+
+          {/* Login Icon */}
+          <Link to="/auth">
+            <IoPersonCircle
+              size={28}
+              className="text-gray-700 hover:text-blue-600"
+            />
           </Link>
         </div>
 
@@ -50,10 +63,8 @@ export default function Navbar() {
       </div>
 
       {/* Mobile Menu */}
-
       {menuOpen && (
         <div className="md:hidden mt-4 space-y-3 px-4">
-
           <Link to="/" className="block text-gray-700 hover:text-blue-600">
             Home
           </Link>

@@ -1,6 +1,5 @@
 import "animate.css";
-import { useState } from "react";
-import { toast } from "react-toastify";
+import Swal from "sweetalert2";
 
 export default function Games() {
   const games = [
@@ -32,16 +31,39 @@ export default function Games() {
       image: "/images/spider-man.jpg",
       price: "$34.99",
     },
+    {
+      id: 9,
+      title: "Ghost of tsushima",
+      image: "/images/ghost.jpg",
+      price: "$64.99",
+    },
+    {
+      id: 10,
+      title: "Elden ring",
+      image: "/images/elden ring.jpg",
+      price: "$54.99",
+    },
+    {
+      id: 11,
+      title: "Horizon",
+      image: "/images/horizon.jpg",
+      price: "$49.99",
+    },
+    {
+      id: 12,
+      title: "The witcher",
+      image: "/images/the witcher.jpg",
+      price: "$74.99",
+    },
   ];
 
   const handleAddToCart = (title) => {
-    toast.success(`${title} added to cart!`, {
-      position: "top-center",
-      autoClose: 2000,
-      hideProgressBar: true,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
+    Swal.fire({
+      title: `${title}`,
+      text: 'Added to cart successfully!',
+      icon: 'success',
+      timer: 1000, 
+      showConfirmButton: false,
     });
   };
 
@@ -60,7 +82,7 @@ export default function Games() {
             <img
               src={game.image}
               alt={game.title}
-              className="w-full h-48 object-cover"
+              className="w-full h-48 bg-contain "
             />
             <div className="p-4 flex flex-col items-center">
               <h2 className="text-xl font-semibold mb-2">{game.title}</h2>
