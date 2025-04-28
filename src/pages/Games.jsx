@@ -1,5 +1,6 @@
 import "animate.css";
 import Swal from "sweetalert2";
+import AddToCart from "../components/AddToCart";
 
 export default function Games() {
   const games = [
@@ -60,9 +61,9 @@ export default function Games() {
   const handleAddToCart = (title) => {
     Swal.fire({
       title: `${title}`,
-      text: 'Added to cart successfully!',
-      icon: 'success',
-      timer: 1000, 
+      text: "Added to cart successfully!",
+      icon: "success",
+      timer: 1000,
       showConfirmButton: false,
     });
   };
@@ -87,11 +88,8 @@ export default function Games() {
             <div className="p-4 flex flex-col items-center">
               <h2 className="text-xl font-semibold mb-2">{game.title}</h2>
               <p className="text-gray-600 mb-4">{game.price}</p>
-              <button
-                onClick={() => handleAddToCart(game.title)}
-                className="mt-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white px-5 py-2 rounded-full hover:scale-110 transition-transform"
-              >
-                Add to Cart
+              <button onClick={() => handleAddToCart(game.title)}>
+                <AddToCart title={game.title} />
               </button>
             </div>
           </div>

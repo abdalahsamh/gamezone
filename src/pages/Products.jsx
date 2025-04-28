@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FaFire, FaTag, FaRocket } from "react-icons/fa";
 import "animate.css";
+import AddToCart from "../components/AddToCart";
 import Swal from "sweetalert2";
 
 const productsData = [
@@ -123,10 +124,9 @@ export default function Products() {
       if (sortOption === "newest") return b.id - a.id;
       return 0;
     });
-
-  const handleAddToCart = (productName) => {
+  const handleAddToCart = (name) => {
     Swal.fire({
-      title: `${productName}`,
+      title: `${name}`,
       text: "Added to cart successfully!",
       icon: "success",
       timer: 1000,
@@ -166,7 +166,7 @@ export default function Products() {
           onChange={(e) => setSortOption(e.target.value)}
           className="border rounded-lg p-2 w-full md:w-1/4 focus:outline-none focus:ring-2 focus:ring-blue-500"
         >
-          <option value="">Sort By</option>ِ
+          <option value="">Sort By</option>
           <option value="price-low">Price: Low to High</option>
           <option value="price-high">Price: High to Low</option>
           <option value="newest">Newest</option>
@@ -205,11 +205,8 @@ export default function Products() {
             </p>
 
             {/* Add to Cart Button */}
-            <button
-              onClick={() => handleAddToCart(product.name)}
-              className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white px-5 py-2 rounded-full hover:scale-90 transition-transform"
-            >
-              Add to Cart
+            <button onClick={() => handleAddToCart(product.name)}>
+              <AddToCart title={product.name} />
             </button>
           </div>
         ))}

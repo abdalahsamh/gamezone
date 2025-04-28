@@ -3,9 +3,11 @@ import { Link } from "react-router-dom";
 import { HiMenu, HiX } from "react-icons/hi";
 import { IoPersonCircle } from "react-icons/io5";
 import { FaShoppingCart } from "react-icons/fa";
+import { useCartStore } from "../store/cartStore";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const cartItems = useCartStore((state) => state.cartItems);
 
   return (
     <nav className="bg-white shadow p-4">
@@ -31,34 +33,33 @@ export default function Navbar() {
           </Link>
         </div>
 
-        {/* Auth & Cart Buttons */}
-        <div className="hidden md:flex items-center space-x-4">
+        {/* Icons Section */}
+        <div className="flex items-center space-x-4">
           {/* Cart Icon */}
           <Link to="/cart" className="relative">
             <FaShoppingCart
               size={24}
               className="text-gray-700 hover:text-blue-600"
             />
-            {/* Badge for cart count */}
             <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
-              0
+              {cartItems.length}
             </span>
           </Link>
 
-          {/* Login Icon */}
+          {/* Profile Icon */}
           <Link to="/auth">
             <IoPersonCircle
               size={28}
               className="text-gray-700 hover:text-blue-600"
             />
           </Link>
-        </div>
 
-        {/* Mobile Menu Icon */}
-        <div className="md:hidden">
-          <button onClick={() => setMenuOpen(!menuOpen)}>
-            {menuOpen ? <HiX size={28} /> : <HiMenu size={28} />}
-          </button>
+          {/* Mobile Menu Button */}
+          <div className="md:hidden">
+            <button onClick={() => setMenuOpen(!menuOpen)}>
+              {menuOpen ? <HiX size={28} /> : <HiMenu size={28} />}
+            </button>
+          </div>
         </div>
       </div>
 
@@ -82,12 +83,6 @@ export default function Navbar() {
             className="block text-gray-700 hover:text-blue-600"
           >
             Accessories
-          </Link>
-          <Link
-            to="/auth"
-            className="block bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
-          >
-            Login
           </Link>
         </div>
       )}
