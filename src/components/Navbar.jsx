@@ -10,7 +10,7 @@ export default function Navbar() {
   const cartItems = useCartStore((state) => state.cartItems);
 
   return (
-    <nav className="bg-white shadow p-4">
+    <nav className="bg-white shadow p-4 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         {/* Logo */}
         <span className="text-xl font-bold text-blue-600 cursor-default">

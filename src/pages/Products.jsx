@@ -194,7 +194,7 @@ export default function Products() {
             <img
               src={product.image}
               alt={product.name}
-              className="w-full h-60 bg-cover rounded-xl mb-4 transition-transform duration-300"
+              className="w-full h-70 bg-cover rounded-xl mb-4 transition-transform duration-300"
             />
 
             {/* Product Info */}
