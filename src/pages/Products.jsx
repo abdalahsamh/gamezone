@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FaFire, FaTag, FaRocket } from "react-icons/fa";
 import "animate.css";
+import { useCartStore } from "../store/cartStore";
 import AddToCart from "../components/AddToCart";
 import Swal from "sweetalert2";
 
@@ -124,9 +125,12 @@ export default function Products() {
       if (sortOption === "newest") return b.id - a.id;
       return 0;
     });
-  const handleAddToCart = (name) => {
+  const addToCart = useCartStore((state) => state.addToCart);
+
+  const handleAddToCart = (product) => {
+    addToCart(product);
     Swal.fire({
-      title: `${name}`,
+      title: `${product.name}`,
       text: "Added to cart successfully!",
       icon: "success",
       timer: 1000,
@@ -205,7 +209,7 @@ export default function Products() {
             </p>
 
             {/* Add to Cart Button */}
-            <button onClick={() => handleAddToCart(product.name)}>
+            <button onClick={() => handleAddToCart(product)}>
               <AddToCart title={product.name} />
             </button>
           </div>

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FaFire, FaTag, FaRocket } from "react-icons/fa";
 import "animate.css";
+import { useCartStore } from "../store/cartStore";
 import AddToCart from "../components/AddToCart";
 import Swal from "sweetalert2";
 
@@ -129,7 +130,6 @@ export default function Accessories() {
   const [sortOption, setSortOption] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
 
-  // جيبنا كل الكاتيجوريهات بدون تكرار
   const categories = [
     "All",
     ...new Set(accessoriesData.map((item) => item.category)),
@@ -149,9 +149,12 @@ export default function Accessories() {
       return 0;
     });
 
-  const handleAddToCart = (name) => {
+  const addToCart = useCartStore((state) => state.addToCart);
+
+  const handleAddToCart = (accessory) => {
+    addToCart(accessory);
     Swal.fire({
-      title: `${name}`,
+      title: `${accessory.name}`,
       text: "Added to cart successfully!",
       icon: "success",
       timer: 1000,
@@ -203,7 +206,7 @@ export default function Accessories() {
         {filteredAccessories.map((accessory) => (
           <div
             key={accessory.id}
-            className="relative bg-white p-4 rounded-2xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 animate_animated animate_fadeInUp"
+            className="relative bg-white p-4 rounded-2xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 animate__animated animate__fadeInUp"
           >
             {/* Badge */}
             {accessory.badge && (
@@ -232,7 +235,7 @@ export default function Accessories() {
             </p>
 
             {/* Add to Cart */}
-            <button onClick={() => handleAddToCart(accessory.name)}>
+            <button onClick={() => handleAddToCart(accessory)}>
               <AddToCart title={accessory.name} />
             </button>
           </div>

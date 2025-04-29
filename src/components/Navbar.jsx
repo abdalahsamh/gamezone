@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { HiMenu, HiX } from "react-icons/hi";
 import { IoPersonCircle } from "react-icons/io5";
 import { FaShoppingCart } from "react-icons/fa";
-import { useCartStore } from "../store/cartStore";
+import { useCartStore } from '../store/cartStore';
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);

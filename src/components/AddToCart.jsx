@@ -1,14 +1,17 @@
-import { useCartStore } from "../store/cartStore";
+import React from 'react';
+import { useCartStore } from '../store/cartStore';
 
-export default function AddToCart({ product }) {
+const AddToCart = ({ product }) => {
   const addToCart = useCartStore((state) => state.addToCart);
 
   return (
     <button
       onClick={() => addToCart(product)}
-      className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded"
+      className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition"
     >
       Add to Cart
     </button>
   );
-}
+};
+
+export default AddToCart;
