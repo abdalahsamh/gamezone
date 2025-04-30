@@ -87,9 +87,12 @@ export default function Cart() {
                   </p>
                   <button
                     onClick={() => handleRemove(item.id)}
-                    className="text-red-500 text-sm mt-2"
+                    className="text-red-500 text-sm mt-2 hover:underline decoration-red-500 decoration-2 transition-all duration-200"
                   >
-                    Remove
+                    <span className="relative text-red-500 text-sm mt-2 inline-block group cursor-pointer">
+                      Remove
+                      <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-red-500 transition-all duration-300 group-hover:w-full"></span>
+                    </span>
                   </button>
                 </div>
               </div>

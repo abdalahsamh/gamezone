@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 import { useCartStore } from "../store/cartStore";
 const productsData = [
   {
-    id: 1,
+    id: 13,
     name: "Gaming PC",
     price: 1500,
     category: "PC",
@@ -14,7 +14,7 @@ const productsData = [
     badge: "New",
   },
   {
-    id: 2,
+    id: 14,
     name: "Xbox Series X",
     price: 2500,
     category: "Xbox",
@@ -23,7 +23,7 @@ const productsData = [
     badge: "Sale",
   },
   {
-    id: 3,
+    id: 15,
     name: "PlayStation 5",
     price: 5550,
     category: "PS",
@@ -32,7 +32,7 @@ const productsData = [
     badge: "Limited",
   },
   {
-    id: 4,
+    id: 16,
     name: "PC Screen",
     price: 320,
     category: "PC",
@@ -41,7 +41,7 @@ const productsData = [
     badge: "New",
   },
   {
-    id: 5,
+    id: 17,
     name: "PC Gaming Screen",
     price: 750,
     category: "PC",
@@ -50,7 +50,7 @@ const productsData = [
     badge: "New",
   },
   {
-    id: 6,
+    id: 18,
     name: "PlayStation 4",
     price: 1440,
     category: "PS",
@@ -59,7 +59,7 @@ const productsData = [
     badge: "Sale",
   },
   {
-    id: 7,
+    id: 19,
     name: "PlayStation 4 joystick",
     price: 140,
     category: "PS",
@@ -68,7 +68,7 @@ const productsData = [
     badge: "Sale",
   },
   {
-    id: 8,
+    id: 20,
     name: "Laptop Gaming",
     price: 2300,
     category: "laptop",
@@ -77,7 +77,7 @@ const productsData = [
     badge: "Limited",
   },
   {
-    id: 9,
+    id: 21,
     name: "PlayStation 5 joystick",
     price: 300,
     category: "PS",
@@ -86,7 +86,7 @@ const productsData = [
     badge: "Limited",
   },
   {
-    id: 10,
+    id: 22,
     name: "macbook pro",
     price: 4000,
     category: "laptop",
@@ -95,7 +95,7 @@ const productsData = [
     badge: "Limited",
   },
   {
-    id: 11,
+    id: 23,
     name: "Xbox Series X joystick",
     price: 380,
     category: "Xbox",

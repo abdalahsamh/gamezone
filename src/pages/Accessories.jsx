@@ -6,7 +6,7 @@ import { useCartStore } from "../store/cartStore";
 
 const accessoriesData = [
   {
-    id: 1,
+    id: 24,
     name: "Gaming Chair 1",
     price: 100,
     category: "Chair",
@@ -15,7 +15,7 @@ const accessoriesData = [
     badge: "New",
   },
   {
-    id: 2,
+    id: 25,
     name: "Gaming Chair 2",
     price: 120,
     category: "Chair",
@@ -24,7 +24,7 @@ const accessoriesData = [
     badge: "New",
   },
   {
-    id: 3,
+    id: 26,
     name: "Gaming Chair 3",
     price: 140,
     category: "Chair",
@@ -33,7 +33,7 @@ const accessoriesData = [
     badge: "New",
   },
   {
-    id: 4,
+    id: 27,
     name: "External Hard Drive",
     price: 80,
     category: "Storage",
@@ -42,7 +42,7 @@ const accessoriesData = [
     badge: "Sale",
   },
   {
-    id: 5,
+    id: 28,
     name: "Gaming Headset 1",
     price: 60,
     category: "Headset",
@@ -51,7 +51,7 @@ const accessoriesData = [
     badge: "New",
   },
   {
-    id: 6,
+    id: 29,
     name: "Gaming Headset 2",
     price: 70,
     category: "Headset",
@@ -60,7 +60,7 @@ const accessoriesData = [
     badge: "New",
   },
   {
-    id: 7,
+    id: 30,
     name: "Gaming Headset 3",
     price: 90,
     category: "Headset",
@@ -69,7 +69,7 @@ const accessoriesData = [
     badge: "New",
   },
   {
-    id: 8,
+    id: 31,
     name: "Mechanical Keyboard",
     price: 85,
     category: "Keyboard",
@@ -78,7 +78,7 @@ const accessoriesData = [
     badge: "Sale",
   },
   {
-    id: 9,
+    id: 32,
     name: "RGB Keyboard",
     price: 95,
     category: "Keyboard",
@@ -87,7 +87,7 @@ const accessoriesData = [
     badge: "Limited",
   },
   {
-    id: 10,
+    id: 33,
     name: "Wired Mouse",
     price: 25,
     category: "Mouse",
@@ -96,7 +96,7 @@ const accessoriesData = [
     badge: "New",
   },
   {
-    id: 11,
+    id: 34,
     name: "Wireless Mouse",
     price: 35,
     category: "Mouse",
@@ -105,7 +105,7 @@ const accessoriesData = [
     badge: "New",
   },
   {
-    id: 12,
+    id: 35,
     name: "Mouse Pad",
     price: 15,
     category: "Mousepad",
@@ -114,7 +114,7 @@ const accessoriesData = [
     badge: "Sale",
   },
   {
-    id: 13,
+    id: 36,
     name: "RGB Mouse Pad",
     price: 20,
     category: "Mousepad",
