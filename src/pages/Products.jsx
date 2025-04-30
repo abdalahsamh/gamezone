@@ -1,10 +1,8 @@
 import { useState } from "react";
 import { FaFire, FaTag, FaRocket } from "react-icons/fa";
 import "animate.css";
-import { useCartStore } from "../store/cartStore";
-import AddToCart from "../components/AddToCart";
 import Swal from "sweetalert2";
-
+import { useCartStore } from "../store/cartStore";
 const productsData = [
   {
     id: 1,
@@ -130,7 +128,7 @@ export default function Products() {
   const handleAddToCart = (product) => {
     addToCart(product);
     Swal.fire({
-      title: `${product.name}`,
+      title: product.name,
       text: "Added to cart successfully!",
       icon: "success",
       timer: 1000,
@@ -209,8 +207,11 @@ export default function Products() {
             </p>
 
             {/* Add to Cart Button */}
-            <button onClick={() => handleAddToCart(product)}>
-              <AddToCart title={product.name} />
+            <button
+              onClick={() => handleAddToCart(product)}
+              className="w-full py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+            >
+              Add to Cart
             </button>
           </div>
         ))}

@@ -64,7 +64,7 @@ export default function Games() {
   const handleAddToCart = (game) => {
     addToCart(game);
     Swal.fire({
-      title: `${game.name}`,
+      title: `${game.title}`,
       text: "Added to cart successfully!",
       icon: "success",
       timer: 1000,
@@ -87,14 +87,13 @@ export default function Games() {
             <img
               src={game.image}
               alt={game.title}
-              className="w-full h-48 bg-contain "
+              className="w-full h-48 bg-contain"
             />
+              {/* //onClick={() => handleAddToCart(game)}  */}
             <div className="p-4 flex flex-col items-center">
               <h2 className="text-xl font-semibold mb-2">{game.title}</h2>
               <p className="text-gray-600 mb-4">{game.price}</p>
-              <button onClick={() => handleAddToCart(game)}>
-                <AddToCart title={game.name} />
-              </button>
+              <AddToCart product={game} />
             </div>
           </div>
         ))}

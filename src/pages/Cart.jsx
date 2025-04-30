@@ -1,26 +1,11 @@
-import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
-
+import { useCartStore } from "../store/cartStore";
 export default function Cart() {
-  const [cartItems, setCartItems] = useState([]);
-
-  // Load cart from localStorage
-  useEffect(() => {
-    const storedCart = localStorage.getItem("cart");
-    if (storedCart) {
-      setCartItems(JSON.parse(storedCart));
-    }
-  }, []);
-
-  // Save cart to localStorage whenever cartItems change
-  useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cartItems));
-  }, [cartItems]);
+  const { cartItems, removeFromCart, updateQuantity, clearCart } =
+    useCartStore();
 
   const handleRemove = (id) => {
-    const updatedCart = cartItems.filter((item) => item.id !== id);
-    setCartItems(updatedCart);
-
+    removeFromCart(id);
     Swal.fire({
       title: "Removed!",
       text: "Product removed from cart.",
@@ -31,32 +16,29 @@ export default function Cart() {
   };
 
   const handleIncrease = (id) => {
-    const updatedCart = cartItems.map((item) =>
-      item.id === id ? { ...item, quantity: item.quantity + 1 } : item
-    );
-    setCartItems(updatedCart);
+    const item = cartItems.find((item) => item.id === id);
+    if (item) {
+      updateQuantity(id, item.quantity + 1);
+    }
   };
 
   const handleDecrease = (id) => {
-    const updatedCart = cartItems
-      .map((item) =>
-        item.id === id
-          ? { ...item, quantity: item.quantity > 1 ? item.quantity - 1 : 1 }
-          : item
-      )
-      .filter((item) => item.quantity > 0);
-    setCartItems(updatedCart);
+    const item = cartItems.find((item) => item.id === id);
+    if (item) {
+      const newQuantity = item.quantity > 1 ? item.quantity - 1 : 1;
+      updateQuantity(id, newQuantity);
+    }
   };
 
   const calculateTotal = () => {
-    return cartItems.reduce(
-      (total, item) => total + item.price * item.quantity,
-      0
-    );
+    return cartItems.reduce((total, item) => {
+      const price = Number(item.price);
+      return total + (isNaN(price) ? 0 : price * item.quantity);
+    }, 0);
   };
 
   return (
-    <div className="p-6 h-[72vh] bg-gradient-to-b from-gray-100 to-gray-300">
+    <div className="p-6 min-h-[72vh] bg-gradient-to-b from-gray-100 to-gray-300">
       <h1 className="text-3xl font-bold mb-8 text-center">Your Cart</h1>
 
       {cartItems.length === 0 ? (
@@ -66,18 +48,20 @@ export default function Cart() {
           <div className="grid grid-cols-1 gap-6">
             {cartItems.map((item) => (
               <div
-                key={item.id}
+                key={`${item.id}-${item.title || item.name}`}
                 className="bg-white p-4 rounded-xl shadow-md flex items-center justify-between"
               >
                 <div className="flex items-center gap-4">
                   <img
                     src={item.image}
-                    alt={item.name}
+                    alt={item.title || item.name}
                     className="w-20 h-20 object-cover rounded"
                   />
                   <div>
-                    <h2 className="text-lg font-semibold">{item.name}</h2>
-                    <p className="text-gray-500">${item.price}</p>
+                    <h2 className="text-lg font-semibold">
+                      {item.title || item.name}
+                    </h2>
+                    <p className="text-gray-500">{item.price}</p>
                   </div>
                 </div>
 
@@ -116,6 +100,12 @@ export default function Cart() {
             <h2 className="text-2xl font-bold">
               Total: ${calculateTotal().toFixed(2)}
             </h2>
+            <button
+              onClick={clearCart}
+              className="mt-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+            >
+              Clear Cart
+            </button>
           </div>
         </>
       )}

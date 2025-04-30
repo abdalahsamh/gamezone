@@ -5,21 +5,46 @@ export const useCartStore = create(
   persist(
     (set, get) => ({
       cartItems: [],
-
       addToCart: (product) => {
-        const newProduct = { ...product, quantity: 1 };
-        set({ cartItems: [...get().cartItems, newProduct] });
-      },
+        // تأكد إن السعر رقم
+        const numericPrice =
+          typeof product.price === "string"
+            ? Number(product.price.replace(/[^0-9.-]+/g, ""))
+            : product.price;
 
-      removeFromCart: (id) => {
-        const updatedCart = get().cartItems.filter((item, index) => item.id !== id || index !== 0);
-        set({ cartItems: updatedCart });
-      },
+        const existing = get().cartItems.find((item) => item.id === product.id);
 
+        if (existing) {
+          set({
+            cartItems: get().cartItems.map((item) =>
+              item.id === product.id
+                ? { ...item, quantity: item.quantity + 1 }
+                : item
+            ),
+          });
+        } else {
+          set({
+            cartItems: [
+              ...get().cartItems,
+              { ...product, price: numericPrice, quantity: 1 },
+            ],
+          });
+        }
+      },
+      removeFromCart: (id) =>
+        set({
+          cartItems: get().cartItems.filter((item) => item.id !== id),
+        }),
       clearCart: () => set({ cartItems: [] }),
+      updateQuantity: (id, quantity) =>
+        set({
+          cartItems: get().cartItems.map((item) =>
+            item.id === id ? { ...item, quantity } : item
+          ),
+        }),
     }),
     {
-      name: "cart-storage",
+      name: "cart-storage", // اسم المفتاح في localStorage
     }
   )
 );
