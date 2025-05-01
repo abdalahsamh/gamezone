@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import { HiMenu, HiX } from "react-icons/hi";
 import { IoPersonCircle } from "react-icons/io5";
 import { FaShoppingCart } from "react-icons/fa";
-import { useCartStore } from '../store/cartStore';
+import { useCartStore } from "../store/cartStore";
+import "animate.css";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -33,9 +34,8 @@ export default function Navbar() {
           </Link>
         </div>
 
-        {/* Icons Section */}
+        {/* Icons */}
         <div className="flex items-center space-x-4">
-          {/* Cart Icon */}
           <Link to="/cart" className="relative">
             <FaShoppingCart
               size={24}
@@ -46,7 +46,6 @@ export default function Navbar() {
             </span>
           </Link>
 
-          {/* Profile Icon */}
           <Link to="/auth">
             <IoPersonCircle
               size={28}
@@ -54,7 +53,7 @@ export default function Navbar() {
             />
           </Link>
 
-          {/* Mobile Menu Button */}
+          {/* Burger Menu */}
           <div className="md:hidden">
             <button onClick={() => setMenuOpen(!menuOpen)}>
               {menuOpen ? <HiX size={28} /> : <HiMenu size={28} />}
@@ -63,9 +62,9 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu with Animation */}
       {menuOpen && (
-        <div className="md:hidden mt-4 space-y-3 px-4">
+        <div className="md:hidden mt-4 space-y-3 px-4 animate__animated animate__fadeInDown">
           <Link to="/" className="block text-gray-700 hover:text-blue-600">
             Home
           </Link>

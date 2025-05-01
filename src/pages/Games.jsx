@@ -57,6 +57,30 @@ export default function Games() {
       image: "/images/the witcher.jpg",
       price: "$74.99",
     },
+    {
+      id: 13,
+      title: "It takes two",
+      image: "/images/it takes tow.jpg",
+      price: "$33.99",
+    },
+    {
+      id: 14,
+      title: "Assassin's Creed Origins",
+      image: "/images/assassin.jpg",
+      price: "$82.99",
+    },
+    {
+      id: 15,
+      title: "Watch Dogs: Legion",
+      image: "/images/watch dogs.jpg",
+      price: "$34.99",
+    },
+    {
+      id: 16,
+      title: "The Last of Us Part I",
+      image: "/images/last of us.jpg",
+      price: "$67.99",
+    },
   ];
 
   const addToCart = useCartStore((state) => state.addToCart);
@@ -87,7 +111,7 @@ export default function Games() {
             <img
               src={game.image}
               alt={game.title}
-              className="w-full h-48 bg-contain"
+              className="w-full h-70 bg-cover rounded-xl"
             />
               {/* //onClick={() => handleAddToCart(game)}  */}
             <div className="p-4 flex flex-col items-center">

@@ -1,5 +1,6 @@
 import Swal from "sweetalert2";
 import { useCartStore } from "../store/cartStore";
+
 export default function Cart() {
   const { cartItems, removeFromCart, updateQuantity, clearCart } =
     useCartStore();
@@ -49,63 +50,66 @@ export default function Cart() {
             {cartItems.map((item) => (
               <div
                 key={`${item.id}-${item.title || item.name}`}
-                className="bg-white p-4 rounded-xl shadow-md flex items-center justify-between"
+                className="bg-white p-4 rounded-xl shadow-md flex flex-col sm:flex-row items-center justify-between gap-4"
               >
-                <div className="flex items-center gap-4">
+                {/* Product Image + Info */}
+                <div className="flex items-center gap-4 w-full sm:w-auto">
                   <img
                     src={item.image}
                     alt={item.title || item.name}
-                    className="w-20 h-20 object-cover rounded"
+                    className="w-24 h-24 object-cover rounded"
                   />
                   <div>
                     <h2 className="text-lg font-semibold">
                       {item.title || item.name}
                     </h2>
-                    <p className="text-gray-500">{item.price}</p>
+                    <p className="text-gray-500">Price: ${item.price}</p>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-4">
+                {/* Quantity Controls */}
+                <div className="flex items-center gap-3">
                   <button
                     onClick={() => handleDecrease(item.id)}
-                    className="px-3 py-1 bg-gray-300 rounded"
+                    className="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 transition"
                   >
                     -
                   </button>
-                  <span className="font-bold">{item.quantity}</span>
+                  <span className="font-bold min-w-[20px] text-center">
+                    {item.quantity}
+                  </span>
                   <button
                     onClick={() => handleIncrease(item.id)}
-                    className="px-3 py-1 bg-gray-300 rounded"
+                    className="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 transition"
                   >
                     +
                   </button>
                 </div>
 
+                {/* Price + Remove */}
                 <div className="text-right">
-                  <p className="font-bold">
+                  <p className="font-bold text-lg">
                     ${(item.price * item.quantity).toFixed(2)}
                   </p>
                   <button
                     onClick={() => handleRemove(item.id)}
-                    className="text-red-500 text-sm mt-2 hover:underline decoration-red-500 decoration-2 transition-all duration-200"
+                    className="text-red-600 text-sm mt-2 hover:underline"
                   >
-                    <span className="relative text-red-500 text-sm mt-2 inline-block group cursor-pointer">
-                      Remove
-                      <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-red-500 transition-all duration-300 group-hover:w-full"></span>
-                    </span>
+                    Remove
                   </button>
                 </div>
               </div>
             ))}
           </div>
 
+          {/* Total & Clear */}
           <div className="mt-8 text-right">
             <h2 className="text-2xl font-bold">
               Total: ${calculateTotal().toFixed(2)}
             </h2>
             <button
               onClick={clearCart}
-              className="mt-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+              className="mt-4 px-6 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition"
             >
               Clear Cart
             </button>
