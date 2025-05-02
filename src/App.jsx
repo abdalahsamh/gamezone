@@ -9,7 +9,7 @@ import Footer from "./components/Footer";
 import Games from "./pages/Games";
 import Cart from "./pages/Cart";
 import Error from "./pages/Error";
-import ThankYou from "./pages/Thankyou";
+import ThankYou from "./pages/ThankYou";
 
 export default function App() {
   return (
@@ -22,7 +22,7 @@ export default function App() {
         <Route path="/accessories" element={<Accessories />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/auth" element={<Login />} />
-        <Route path="/thank-you" element={<ThankYou />} />
+        <Route path="/ThankYou" element={<ThankYou />} />
         <Route path="*" element={<Error />} />
       </Routes>
       <Footer />
