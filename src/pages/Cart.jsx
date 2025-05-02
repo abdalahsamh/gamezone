@@ -49,7 +49,7 @@ export default function Cart() {
       timer: 1500,
     }).then(() => {
       clearCart();
-      navigate("/thank-you");
+      navigate("/ThankYou");
     });
   };
 
