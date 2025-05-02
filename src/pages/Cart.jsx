@@ -1,9 +1,11 @@
 import Swal from "sweetalert2";
 import { useCartStore } from "../store/cartStore";
+import { useNavigate } from "react-router-dom";
 
 export default function Cart() {
   const { cartItems, removeFromCart, updateQuantity, clearCart } =
     useCartStore();
+  const navigate = useNavigate();
 
   const handleRemove = (id) => {
     removeFromCart(id);
@@ -36,6 +38,19 @@ export default function Cart() {
       const price = Number(item.price);
       return total + (isNaN(price) ? 0 : price * item.quantity);
     }, 0);
+  };
+
+  const handlePayment = () => {
+    Swal.fire({
+      title: "Processing...",
+      text: "Please wait",
+      icon: "info",
+      showConfirmButton: false,
+      timer: 1500,
+    }).then(() => {
+      clearCart();
+      navigate("/thank-you");
+    });
   };
 
   return (
@@ -102,17 +117,25 @@ export default function Cart() {
             ))}
           </div>
 
-          {/* Total & Clear */}
+          {/* Total & Buttons */}
           <div className="mt-8 text-right">
             <h2 className="text-2xl font-bold">
               Total: ${calculateTotal().toFixed(2)}
             </h2>
-            <button
-              onClick={clearCart}
-              className="mt-4 px-6 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition"
-            >
-              Clear Cart
-            </button>
+            <div className="mt-4 flex justify-end gap-4">
+              <button
+                onClick={clearCart}
+                className="px-6 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition"
+              >
+                Clear Cart
+              </button>
+              <button
+                onClick={handlePayment}
+                className="px-6 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition"
+              >
+                Proceed to Payment
+              </button>
+            </div>
           </div>
         </>
       )}
