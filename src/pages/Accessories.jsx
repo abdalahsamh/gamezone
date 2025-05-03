@@ -236,9 +236,25 @@ export default function Accessories() {
             {/* Add to Cart */}
             <button
               onClick={() => handleAddToCart(accessory)}
-              className="w-full py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+              className="w-full py-3 px-6 bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-lg shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 active:translate-y-0 active:scale-95"
             >
-              Add to Cart
+              <span className="flex items-center justify-center space-x-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                  />
+                </svg>
+                <span>Add to Cart</span>
+              </span>
             </button>
           </div>
         ))}
