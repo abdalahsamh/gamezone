@@ -10,6 +10,7 @@ import Games from "./pages/Games";
 import Cart from "./pages/Cart";
 import Error from "./pages/Error";
 import ThankYou from "./pages/ThankYou";
+import Checkout from "./pages/Checkout";
 
 export default function App() {
   return (
@@ -23,6 +24,7 @@ export default function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/auth" element={<Login />} />
         <Route path="/ThankYou" element={<ThankYou />} />
+        <Route path="/checkout" element={<Checkout />} />
         <Route path="*" element={<Error />} />
       </Routes>
       <Footer />

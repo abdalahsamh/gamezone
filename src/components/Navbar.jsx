@@ -47,7 +47,7 @@ export default function Navbar() {
 
   return (
     <>
-      <div className="h-16 md:h-20"></div>
+      <div className="h-16 md:h-14"></div>
 
       <motion.nav
         initial={{ y: -100 }}

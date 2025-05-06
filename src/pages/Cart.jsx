@@ -40,17 +40,8 @@ export default function Cart() {
     }, 0);
   };
 
-  const handlePayment = () => {
-    Swal.fire({
-      title: "Processing...",
-      text: "Please wait",
-      icon: "info",
-      showConfirmButton: false,
-      timer: 1500,
-    }).then(() => {
-      clearCart();
-      navigate("/ThankYou");
-    });
+  const handleGoToCheckout = () => {
+    navigate("/checkout");
   };
 
   return (
@@ -67,7 +58,6 @@ export default function Cart() {
                 key={`${item.id}-${item.title || item.name}`}
                 className="bg-white p-4 rounded-xl shadow-md flex flex-col sm:flex-row items-center justify-between gap-4"
               >
-                {/* Product Image + Info */}
                 <div className="flex items-center gap-4 w-full sm:w-auto">
                   <img
                     src={item.image}
@@ -82,7 +72,6 @@ export default function Cart() {
                   </div>
                 </div>
 
-                {/* Quantity Controls */}
                 <div className="flex items-center gap-3">
                   <button
                     onClick={() => handleDecrease(item.id)}
@@ -101,7 +90,6 @@ export default function Cart() {
                   </button>
                 </div>
 
-                {/* Price + Remove */}
                 <div className="text-right">
                   <p className="font-bold text-lg">
                     ${(item.price * item.quantity).toFixed(2)}
@@ -117,7 +105,6 @@ export default function Cart() {
             ))}
           </div>
 
-          {/* Total & Buttons */}
           <div className="mt-8 text-right">
             <h2 className="text-2xl font-bold">
               Total: ${calculateTotal().toFixed(2)}
@@ -130,7 +117,7 @@ export default function Cart() {
                 Clear Cart
               </button>
               <button
-                onClick={handlePayment}
+                onClick={handleGoToCheckout}
                 className="px-6 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition"
               >
                 Proceed to Payment
