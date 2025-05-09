@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
-const Auth = () => {
+export default function Auth() {
   const [isLogin, setIsLogin] = useState(true);
+  const navigate = useNavigate();
 
   const loginSchema = Yup.object({
     email: Yup.string().email("Invalid email").required("Email is required"),
@@ -22,9 +25,17 @@ const Auth = () => {
       .required("Password is required"),
   });
 
-  const handleSubmit = (values) => {
+  const handleSubmit = async (values) => {
     console.log(isLogin ? "Login Info:" : "Register Info:", values);
-    alert("Form submitted successfully ✅");
+
+    await Swal.fire({
+      title: "Success",
+      text: isLogin ? "Login successful!" : "Registration successful!",
+      icon: "success",
+      confirmButtonText: "Go to Home",
+    });
+
+    navigate("/");
   };
 
   return (
@@ -110,6 +121,4 @@ const Auth = () => {
       </div>
     </div>
   );
-};
-
-export default Auth;
+}
