@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { HiMenu, HiX } from "react-icons/hi";
 import { IoPersonCircle } from "react-icons/io5";
 import { FaShoppingCart, FaGamepad } from "react-icons/fa";
@@ -68,11 +68,11 @@ export default function Navbar() {
               className="flex items-center"
             >
               <FaGamepad className="text-blue-600 text-2xl mr-2" />
-              <Link to="/">
+              <NavLink to="/">
                 <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent cursor-pointer">
                   GameZone
                 </span>
-              </Link>
+              </NavLink>
             </motion.div>
 
             <div className="hidden md:flex items-center space-x-6">
@@ -82,14 +82,20 @@ export default function Navbar() {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <Link
+                  <NavLink
                     to={link.path}
-                    className="relative flex items-center px-3 py-2 text-gray-700 hover:text-blue-600 group transition-all duration-300"
+                    className={({ isActive }) =>
+                      `relative flex items-center px-3 py-2 transition-all duration-300 group ${
+                        isActive
+                          ? "text-blue-600"
+                          : "text-gray-700 hover:text-blue-600"
+                      }`
+                    }
                   >
                     {link.icon}
                     <span>{link.name}</span>
                     <span className="absolute left-1/2 bottom-0 h-0.5 bg-blue-600 w-0 group-hover:w-full group-hover:left-0 transition-all duration-300"></span>
-                  </Link>
+                  </NavLink>
                 </motion.div>
               ))}
             </div>
@@ -100,7 +106,7 @@ export default function Navbar() {
                 whileTap={{ scale: 0.9 }}
                 className="relative"
               >
-                <Link to="/cart">
+                <NavLink to="/cart">
                   <FaShoppingCart
                     size={22}
                     className="text-gray-700 hover:text-blue-600 transition-colors duration-300"
@@ -114,16 +120,16 @@ export default function Navbar() {
                       {cartItems.length}
                     </motion.span>
                   )}
-                </Link>
+                </NavLink>
               </motion.div>
 
               <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-                <Link to="/auth">
+                <NavLink to="/auth">
                   <IoPersonCircle
                     size={26}
                     className="text-gray-700 hover:text-blue-600 transition-colors duration-300"
                   />
-                </Link>
+                </NavLink>
               </motion.div>
 
               {/* Mobile Menu Button */}
@@ -160,21 +166,30 @@ export default function Navbar() {
                     transition: { staggerChildren: 0.07, delayChildren: 0.2 },
                   },
                   closed: {
-                    transition: { staggerChildren: 0.05, staggerDirection: -1 },
+                    transition: {
+                      staggerChildren: 0.05,
+                      staggerDirection: -1,
+                    },
                   },
                 }}
                 className="px-4 py-3 space-y-2"
               >
                 {navLinks.map((link) => (
                   <motion.div key={link.path} variants={itemVariants}>
-                    <Link
+                    <NavLink
                       to={link.path}
                       onClick={() => setMenuOpen(false)}
-                      className="flex items-center px-3 py-3 rounded-md text-gray-700 hover:text-blue-600 hover:bg-blue-50 transition-all duration-300"
+                      className={({ isActive }) =>
+                        `flex items-center px-3 py-3 rounded-md transition-all duration-300 ${
+                          isActive
+                            ? "text-blue-600 bg-blue-50"
+                            : "text-gray-700 hover:text-blue-600 hover:bg-blue-50"
+                        }`
+                      }
                     >
                       {link.icon}
                       <span className="ml-2">{link.name}</span>
-                    </Link>
+                    </NavLink>
                   </motion.div>
                 ))}
               </motion.div>
