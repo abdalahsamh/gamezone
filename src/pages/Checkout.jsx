@@ -10,6 +10,9 @@ export default function Checkout() {
   const [cardName, setCardName] = useState("");
   const [expiryDate, setExpiryDate] = useState("");
   const [cvv, setCvv] = useState("");
+  const [cashName, setCashName] = useState("");
+  const [address, setAddress] = useState("");
+  const [phone, setPhone] = useState("");
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
   const { clearCart } = useCartStore();
@@ -17,7 +20,7 @@ export default function Checkout() {
   const validateVisaForm = () => {
     const newErrors = {};
 
-    if (!cardNumber.trim() || !/^\d{16}$/.test(cardNumber)) {
+    if (!cardNumber.trim() || !/^\d{16}$/.test(cardNumber.replace(/\s/g, ""))) {
       newErrors.cardNumber = "Please enter a valid 16-digit card number";
     }
 
@@ -47,8 +50,23 @@ export default function Checkout() {
       return;
     }
 
+    const newErrors = {};
+
     if (paymentMethod === "visa" && !validateVisaForm()) {
       return;
+    } else if (paymentMethod === "cash") {
+      if (!cashName.trim()) {
+        newErrors.cashName = "Name is required";
+      }
+      if (!address.trim()) {
+        newErrors.address = "Address is required";
+      }
+      if (!/^\d{11}$/.test(phone)) {
+        newErrors.phone = "Enter a valid 11-digit phone number";
+      }
+
+      setErrors(newErrors);
+      if (Object.keys(newErrors).length > 0) return;
     }
 
     Swal.fire({
@@ -95,11 +113,12 @@ export default function Checkout() {
   };
 
   return (
-    <div className="min-h-[72vh] flex items-center justify-center bg-gray-100 px-4">
+    <div className="min-h-[100vh] flex items-center justify-center bg-gray-100 px-4">
       <div className="bg-white p-6 rounded-2xl shadow-lg w-full max-w-md">
         <h2 className="text-2xl font-bold mb-6 text-center">Payment Method</h2>
 
         <div className="space-y-4">
+          {/* Visa Option */}
           <div
             className={`border rounded p-4 cursor-pointer ${
               paymentMethod === "visa" ? "border-blue-500" : "border-gray-300"
@@ -150,7 +169,7 @@ export default function Checkout() {
                     type="text"
                     value={cardName}
                     onChange={(e) => setCardName(e.target.value)}
-                    placeholder="John Doe"
+                    placeholder="Enter your name"
                     className={`w-full p-2 border rounded ${
                       errors.cardName ? "border-red-500" : "border-gray-300"
                     }`}
@@ -209,6 +228,7 @@ export default function Checkout() {
             )}
           </div>
 
+          {/* Cash Option */}
           <div
             className={`border rounded p-4 cursor-pointer ${
               paymentMethod === "cash" ? "border-blue-500" : "border-gray-300"
@@ -227,6 +247,72 @@ export default function Checkout() {
               <FaMoneyBillWave className="text-green-600 text-2xl mr-2" />
               <span>Cash on Delivery</span>
             </div>
+
+            {paymentMethod === "cash" && (
+              <div className="mt-4 space-y-3">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Full Name
+                  </label>
+                  <input
+                    type="text"
+                    value={cashName}
+                    onChange={(e) => setCashName(e.target.value)}
+                    placeholder="Enter your full name"
+                    className={`w-full p-2 border rounded ${
+                      errors.cashName ? "border-red-500" : "border-gray-300"
+                    }`}
+                  />
+                  {errors.cashName && (
+                    <p className="text-red-500 text-xs mt-1">
+                      {errors.cashName}
+                    </p>
+                  )}
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Address
+                  </label>
+                  <input
+                    type="text"
+                    value={address}
+                    onChange={(e) => setAddress(e.target.value)}
+                    placeholder="Enter your address"
+                    className={`w-full p-2 border rounded ${
+                      errors.address ? "border-red-500" : "border-gray-300"
+                    }`}
+                  />
+                  {errors.address && (
+                    <p className="text-red-500 text-xs mt-1">
+                      {errors.address}
+                    </p>
+                  )}
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Phone Number
+                  </label>
+                  <input
+                    type="text"
+                    value={phone}
+                    onChange={(e) =>
+                      setPhone(e.target.value.replace(/\D/g, "").slice(0, 11))
+                    }
+                    placeholder="01xxxxxxxxx"
+                    maxLength={11}
+                    className={`w-full p-2 border rounded ${
+                      errors.phone ? "border-red-500" : "border-gray-300"
+                    }`}
+                  />
+
+                  {errors.phone && (
+                    <p className="text-red-500 text-xs mt-1">{errors.phone}</p>
+                  )}
+                </div>
+              </div>
+            )}
           </div>
         </div>
 

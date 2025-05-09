@@ -157,18 +157,21 @@ export default function Games() {
         {games.map((game) => (
           <div
             key={game.id}
-            className="relative bg-white p-4 rounded-2xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 animate__animated animate__fadeInUp"
+            className="flex flex-col justify-between bg-white p-4 rounded-2xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 animate__animated animate__fadeInUp min-h-[500px]"
           >
-            <img
-              src={game.image}
-              alt={game.title}
-              className="w-full h-70 bg-cover rounded-xl mb-3"
-            />
-            <h3 className="text-xl font-bold mb-2">{game.title}</h3>
-            <p className="text-gray-600 text-sm mb-3">{game.description}</p>
-            <div className="flex justify-between items-center mb-3">
-              <span className="font-bold text-blue-600">{game.price}</span>
+            <div>
+              <img
+                src={game.image}
+                alt={game.title}
+                className="w-full h-70 bg-cover rounded-xl mb-3"
+              />
+              <h3 className="text-xl font-bold mb-2">{game.title}</h3>
+              <p className="text-gray-600 text-sm mb-3">{game.description}</p>
+              <div className="flex justify-between items-center mb-3">
+                <span className="font-bold text-blue-600">{game.price}</span>
+              </div>
             </div>
+
             <button
               onClick={() => handleAddToCart(game)}
               className="w-full py-3 px-6 mt-2 bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-lg shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 active:translate-y-0 active:scale-95"

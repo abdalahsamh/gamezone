@@ -44,7 +44,7 @@ export const useCartStore = create(
         }),
     }),
     {
-      name: "cart-storage", // اسم المفتاح في localStorage
+      name: "cart-storage",
     }
   )
 );

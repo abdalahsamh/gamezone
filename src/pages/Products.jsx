@@ -138,6 +138,10 @@ export default function Products() {
 
   return (
     <div className="p-6 min-h-screen bg-gradient-to-b from-gray-100 to-gray-300">
+      <h1 className="text-4xl font-bold text-center mb-10 animate__animated animate__fadeInDown">
+        <span className="text-blue-500">Our</span> Products
+      </h1>
+
       {/* Search & Filter Section */}
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-10">
         {/* Search */}

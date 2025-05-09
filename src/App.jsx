@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Products from "./pages/Products";
@@ -13,9 +13,16 @@ import ThankYou from "./pages/ThankYou";
 import Checkout from "./pages/Checkout";
 
 export default function App() {
+  const location = useLocation();
+  const hideNavAndFooterPaths = ["/auth", "/checkout", "/ThankYou"];
+  const shouldHideNavAndFooter = hideNavAndFooterPaths.includes(
+    location.pathname
+  );
+
   return (
     <>
-      <Navbar />
+      {!shouldHideNavAndFooter && <Navbar />}
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/games" element={<Games />} />
@@ -27,7 +34,8 @@ export default function App() {
         <Route path="/checkout" element={<Checkout />} />
         <Route path="*" element={<Error />} />
       </Routes>
-      <Footer />
+
+      {!shouldHideNavAndFooter && <Footer />}
     </>
   );
 }

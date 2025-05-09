@@ -14,7 +14,7 @@ export default function ThankYou() {
   }, [navigate]);
 
   return (
-    <div className="min-h-[70vh] flex flex-col items-center justify-center bg-gradient-to-b from-green-100 to-green-300 text-center">
+    <div className="min-h-[100vh] flex flex-col items-center justify-center bg-gradient-to-b from-green-100 to-green-300 text-center">
       <motion.div
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
